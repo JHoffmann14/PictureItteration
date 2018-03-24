@@ -11,75 +11,53 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
+public class activity_technology extends AppCompatActivity {
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+    protected int[] images = {R.drawable.phone, R.drawable.laptop, R.drawable.desktop};
 
-    protected int[] images = {R.drawable.wolf, R.drawable.siberian_husky, R.drawable.husky};
     protected ImageView pics;
     protected int picNum=0;
     protected double xaxis = 0;
 
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_technology);
+        pics = (ImageView)findViewById(R.id.picture);
+    }
     @SuppressLint("ResourceType")
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.layout.menu, menu);
-
+        MenuInflater inflater1 = getMenuInflater();
+        inflater1.inflate(R.layout.menu, menu);
+       // Log.v("josh","has a menu");
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.dogs:
                 //Intent intent = new Intent(this, MainActivity.class);
-
+                main();
                 return true;
             case R.id.technology:
                 //Intent intent1 = new Intent(this,Technology.class);
-                technology();
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        pics = (ImageView)findViewById(R.id.picture);
 
-        //Spinner
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        spinner.setOnItemSelectedListener(this);
-        List<String> dogs = new ArrayList<String>();
-        dogs.add("wolf");
-        dogs.add("siberian_huskey");
-        dogs.add("huskey");
-
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, dogs);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-        String item = adapterView.getItemAtPosition(position).toString();
-       // Toast.makeText(adapterView.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
-        pics.setImageResource(images[position]);
-    }
 
     public void leftClicked(View view){
-       leftSwipe();
+        leftSwipe();
     }
     private void leftSwipe() {
         picNum--;
@@ -89,8 +67,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         pics.setImageResource(images[picNum]);
     }
 
-    public void rightClicked(View view) {
-       rightSwipe();
+    public void rightCliced(View view) {
+        rightSwipe();
     }
     private void rightSwipe(){
         picNum++;
@@ -119,18 +97,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
-    public void technology(){
-        Intent intent = new Intent(this, activity_technology.class);
+    public void main(){
+        Intent intent = new Intent(this, MainActivity.class);
 
         startActivity(intent);
     }
     public void bye(View view){
         Intent intent = new Intent(this, MoreFun.class);
         startActivity(intent);
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 }

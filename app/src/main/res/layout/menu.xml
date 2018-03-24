@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" android:layout_height="match_parent" android:layout_width="match_parent">
+      <item android:id="@+id/dogs"
+          android:icon="@drawable/ic_menu_year_dog"
+        android:title="@string/dogs" />
+    <item android:id="@+id/technology"
+        android:icon="@drawable/ic_menu_technology"
+        android:title="@string/technology" />
+</menu>
